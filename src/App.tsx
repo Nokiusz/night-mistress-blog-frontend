@@ -1,11 +1,8 @@
-import React from 'react';
-import { useState } from 'react';
 import './App.css';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
+import { PageNotFound } from './pages';
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
     <Router>
       <Routes>
@@ -15,7 +12,7 @@ function App() {
         />
         <Route
           path="*"
-          element={<div>404</div>}
+          element={<PageNotFound />}
         />
       </Routes>
     </Router>
