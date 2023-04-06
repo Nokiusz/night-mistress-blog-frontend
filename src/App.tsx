@@ -11,6 +11,10 @@ function App() {
           element={<Posts />}
         />
         <Route
+          path="/add/post"
+          element={<AddPost />}
+        />
+        <Route
           path="/post/:id"
           element={<Post />}
         />
