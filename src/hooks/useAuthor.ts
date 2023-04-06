@@ -1,0 +1,24 @@
+import { useEffect, useState } from 'react';
+import { Author } from '../types';
+export const BASE_URL = 'https://nightmistressblogapi.azurewebsites.net';
+
+function useAuthor(authorId: string): Author | null {
+  const [author, setAuthor] = useState<Author| null>(null);
+
+  useEffect(() => {
+    async function fetchAuthor() {
+      try {
+        const response = await fetch(`${BASE_URL}/Author/${authorId}`);
+        const data = await response.json();
+        setAuthor(data);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    fetchAuthor();
+  }, [authorId]);
+
+  return author;
+}
+
+export default useAuthor;
