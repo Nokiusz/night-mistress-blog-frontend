@@ -1,6 +1,6 @@
 import './App.css';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
-import { PageNotFound } from './pages';
+import { Login, PageNotFound, Post, Posts, Profile, Register } from './pages';
 
 function App() {
   return (
@@ -8,7 +8,23 @@ function App() {
       <Routes>
         <Route
           path="/"
-          element={<div>Home</div>}
+          element={<Posts />}
+        />
+        <Route
+          path="/post/:id"
+          element={<Post />}
+        />
+        <Route
+          path="/register"
+          element={<Register />}
+        />
+        <Route
+          path="/login"
+          element={<Login />}
+        />
+        <Route
+          path="/profile"
+          element={<Profile />}
         />
         <Route
           path="*"
