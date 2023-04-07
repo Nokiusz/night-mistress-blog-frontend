@@ -7,7 +7,7 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  background-color: #e8e8e8;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -21,7 +21,26 @@
   margin: 0px;
 }
 
-body, html {
+body,
+html {
   padding: 0px;
   margin: 0px;
+  background-color: #e8e8e8;
+}
+
+.spinner {
+  margin-right: 0.5rem;
+  animation: spin 1s linear infinite;
+  color: '#CB2A33';
+  width: 2rem;
+  height: 2rem;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
