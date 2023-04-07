@@ -14,5 +14,5 @@ export default theme;
 export declare type Theme = typeof theme;
 
 export interface ThemeProps {
-    theme:Theme
+    theme: Theme
 }
