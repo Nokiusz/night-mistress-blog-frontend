@@ -9,17 +9,19 @@ interface PostItemProps {
 }
 
 const PostItem = ({ post }: PostItemProps) => {
+  const { postId, tags, title, created, author, friendlyName } = post;
+  const { firstName, lastName, avatarLink } = author;
   return (
     <PostContainer
       tabIndex={0}
-      key={post.postId}
+      key={postId}
     >
       <Tags>
-        {post.tags.map((tag) => (
+        {tags.map((tag) => (
           <Tag>{tag}</Tag>
         ))}
       </Tags>
-      <TitleLink to={`/post/${post.friendlyName}`}>{post.title}</TitleLink>
+      <TitleLink to={`/post/${friendlyName}`}>{title}</TitleLink>
       <CreatedSection>
         <img
           src={calendarIcon}
@@ -27,13 +29,13 @@ const PostItem = ({ post }: PostItemProps) => {
           width={16}
           height={16}
         />
-        {formatDate(post.created)}
+        {formatDate(created)}
         <AuthorAvatar
-          src={post.author.avatarLink}
+          src={avatarLink}
           alt="avatar"
         />
-        {post.author.firstName}&nbsp;
-        {post.author.lastName}
+        {firstName}&nbsp;
+        {lastName}
       </CreatedSection>
     </PostContainer>
   );
