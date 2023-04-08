@@ -7,6 +7,7 @@ import {
   AuthorAvatar,
   CreatedSection,
   LeftSection,
+  LeftTopSection,
   PostContainer,
   RightSection,
   Tag,
@@ -30,12 +31,14 @@ const PostItem = ({ post }: PostItemProps) => {
       key={postId}
     >
       <LeftSection>
-        <Tags>
-          {tags.map((tag) => (
-            <Tag>{tag}</Tag>
-          ))}
-        </Tags>
-        <TitleLink to={`/post/${friendlyName}`}>{title}</TitleLink>
+        <LeftTopSection>
+          <Tags>
+            {tags.map((tag) => (
+              <Tag>{tag}</Tag>
+            ))}
+          </Tags>
+          <TitleLink to={`/post/${friendlyName}`}>{title}</TitleLink>
+        </LeftTopSection>
         <CreatedSection>
           <img
             src={calendarIcon}

@@ -79,6 +79,17 @@ export const AmmoutOfPosts = styled.div`
   color: ${({ theme }: ThemeProps) => theme.colors.red};
 `;
 
-export const LeftSection = styled.div``;
+export const LeftSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  justify-content: space-between;
+`;
 
-export const RightSection = styled.div``;
+export const RightSection = styled.div`
+  & img {
+    border-radius: 4px;
+  }
+`;
+
+export const LeftTopSection = styled.div``;
