@@ -7,12 +7,13 @@ export type Author = {
   }
 
 export interface Post {
-  postId: number
-  friendlyName: string
-  author: Author
-  created: string
-  title: string
-  content: string
+  postId: number,
+  friendlyName: string,
+  thumbnail: string,
+  author: Author,
+  created: string,
+  title: string,
+  content: string,
   tags: string[]
 }
 

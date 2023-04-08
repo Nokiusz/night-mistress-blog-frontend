@@ -1,6 +1,7 @@
-import styled from 'styled-components';
-import { ThemeProps } from '../../components/theme';
 import { Link } from 'react-router-dom';
+import styled from 'styled-components';
+
+import { ThemeProps } from '../../components/theme';
 
 export const Container = styled.div`
   display: flex;
@@ -14,7 +15,8 @@ export const Container = styled.div`
 
 export const PostContainer = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: space-between;
   width: 100%;
   background-color: ${({ theme }: ThemeProps) => theme.colors.darkblue};
   max-width: 870px;
@@ -76,3 +78,18 @@ export const AmmoutOfPosts = styled.div`
   text-align: center;
   color: ${({ theme }: ThemeProps) => theme.colors.red};
 `;
+
+export const LeftSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  justify-content: space-between;
+`;
+
+export const RightSection = styled.div`
+  & img {
+    border-radius: 4px;
+  }
+`;
+
+export const LeftTopSection = styled.div``;
