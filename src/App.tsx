@@ -1,6 +1,6 @@
 import './App.css';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
-import { Login, PageNotFound, Post, Posts, Profile, Register } from './pages';
+import { AddPost, Login, PageNotFound, Post, Posts, Profile, Register } from './pages';
 
 function App() {
   return (
