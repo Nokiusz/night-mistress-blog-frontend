@@ -9,6 +9,7 @@ export const Container = styled.div`
   width: 8;
   align-items: center;
   justify-items: center;
+  width: 100%;
 `;
 
 export const PostContainer = styled.div`
