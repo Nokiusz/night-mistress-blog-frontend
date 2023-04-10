@@ -1,6 +1,6 @@
 import React from 'react';
 import { Logo } from './index';
-import { ButtonLink, ButtonLinkContainer, Container, Header } from './Navbar.styles';
+import { ButtonLink, ButtonsGroup, Container, Header } from './Navbar.styles';
 
 const Navbar = () => {
   return (
@@ -10,14 +10,14 @@ const Navbar = () => {
         <div>
           <h1>searchBox</h1>
         </div>
-        <ButtonLinkContainer>
+        <ButtonsGroup>
           <ButtonLink to="/register">
             Sign Up
           </ButtonLink>
           <ButtonLink to="/login">
             Log In
           </ButtonLink>
-        </ButtonLinkContainer>
+        </ButtonsGroup>
       </Container>
     </Header>
   );

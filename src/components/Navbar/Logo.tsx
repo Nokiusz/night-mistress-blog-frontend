@@ -1,11 +1,12 @@
 import NightMistressLogo from '@assets/logo.png';
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { LogoContainer, PageHeading  } from './Navbar.styles';
 
 const Logo = () => {
   return (
     <LogoContainer>
-      <a href="/">
+      <Link to="/">
         <img
           src={NightMistressLogo}
           alt="nightmistress logo"
@@ -13,7 +14,7 @@ const Logo = () => {
           height={49}
         />
         <PageHeading>Blog</PageHeading>
-      </a>
+      </Link>
     </LogoContainer>
   );
 };

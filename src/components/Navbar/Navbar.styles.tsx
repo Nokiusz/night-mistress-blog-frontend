@@ -20,13 +20,7 @@ export const Container = styled.div`
 
   > div {
     flex: 1;
-    }
-  div:nth-child(2) {
-  text-align: center;
-    }
-  div:nth-child(3) {
-    text-align: right;
-    }
+  }
 `;
 
 export const PageHeading = styled.h1`
@@ -37,7 +31,7 @@ export const PageHeading = styled.h1`
 export const LogoContainer = styled.div`
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   color: ${({ theme }: ThemeProps) => theme.colors.white};
 
   a {
@@ -48,7 +42,7 @@ export const LogoContainer = styled.div`
   }
 `;
 
-export const ButtonLinkContainer = styled.div`
+export const ButtonsGroup = styled.div`
   display: flex;
   align-items: center;
   gap: 4px;
