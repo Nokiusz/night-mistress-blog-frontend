@@ -11,10 +11,10 @@ const Navbar = () => {
           <h1>searchBox</h1>
         </div>
         <ButtonsGroup>
-          <ButtonLink to="/register">
+          <ButtonLink variant='primary' to="/register">
             Sign Up
           </ButtonLink>
-          <ButtonLink to="/login">
+          <ButtonLink variant='secondary' to="/login">
             Log In
           </ButtonLink>
         </ButtonsGroup>

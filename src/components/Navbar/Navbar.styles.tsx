@@ -49,16 +49,23 @@ export const ButtonsGroup = styled.div`
   justify-content: flex-end;
 `;
 
-export const ButtonLink = styled(Link)`
+export const ButtonLink = styled(Link)<{variant: 'primary' | 'secondary'}>`
   padding: 8px 14px;
-  background-color: ${({ theme }: ThemeProps) => theme.colors.red};
+  background-color: ${({ theme, variant }: ThemeProps) => 
+    variant === 'primary' ? theme.colors.red : 'transparent'};
   border-radius: 2px;
+  box-shadow: ${({ theme, variant }: ThemeProps) => 
+    variant === 'secondary' ? 'inset 0px 0px 0px 2px'+theme.colors.red : 'transparent'};
   font-weight: 600;
   font-size: 15px;
   transition: .2s ease-out;
 
-  :hover{
-    background-color: ${({ theme }: ThemeProps) => theme.colors.white};
-    color: ${({ theme }: ThemeProps) => theme.colors.red};
+  :hover {
+    background-color: ${({ theme, variant }: ThemeProps) => 
+      variant === 'primary' ? theme.colors.white : 'transparent'};
+    color: ${({ theme, variant }: ThemeProps) => 
+      variant === 'primary' ? theme.colors.red : theme.colors.white};
+    box-shadow: ${({ theme, variant }: ThemeProps) => 
+      variant === 'secondary' ? 'inset 0px 0px 0px 2px'+theme.colors.white : 'transparent'};
   }
 `;
