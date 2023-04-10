@@ -1,5 +1,6 @@
 import './App.css';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
+import { Navbar } from './components';
 import { AddPost, Login, PageNotFound, Post, Posts, Profile, Register } from './pages';
 import { Layout } from './App.styles';
 
@@ -7,6 +8,7 @@ function App() {
   return (
     <Layout>
       <Router>
+        <Navbar />
         <Routes>
           <Route
             path="/"
