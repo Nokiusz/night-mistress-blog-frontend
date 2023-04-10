@@ -28,6 +28,16 @@ html {
   background-color: #e8e8e8;
 }
 
+a{
+  text-decoration: none;
+  color: #fff;
+}
+
+a:hover,
+a:focus{
+  text-decoration: none;
+}
+
 .spinner {
   margin-right: 0.5rem;
   animation: spin 1s linear infinite;
