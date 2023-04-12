@@ -10,6 +10,13 @@ export const Container = styled.div`
   background-color: ${({ theme }: ThemeProps) => theme.colors.darkblue};
   margin-top: 16px;
   border-radius: 4px;
+
+  animation: opacity 0.5s;
+
+  @keyframes opacity {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  } 
 `;
 
 export const Markdown = styled.div`
