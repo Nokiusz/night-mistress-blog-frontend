@@ -17,8 +17,12 @@ const Post = () => {
 
   const { post, loading, status } = usePost(slug);
 
-  if (!post || status === 404) {
+  if (status === 404) {
     return <NotFoundPost>There was no post found with given friendly name </NotFoundPost>;
+  }
+
+  if (!post) {
+    return <Spinner />;
   }
 
   const sanitizedContent = DOMPurify.sanitize(decodeURIComponent(post?.content));
@@ -32,19 +36,19 @@ const Post = () => {
       </Tags>
       <h1>{post.title}</h1>
       <CreatedSection>
-        <img
-          src={calendarIcon}
-          alt="calendar icon"
-          width={16}
-          height={16}
-        />
-        {formatDate(post.created)}
-        <AuthorAvatar
-          src={post.author.avatarLink}
-          alt="avatar"
-        />
-        {post.author.firstName}&nbsp;
-        {post.author.lastName}
+          <img
+            src={calendarIcon}
+            alt="calendar icon"
+            width={16}
+            height={16}
+          />
+          {formatDate(post.created)}
+          <AuthorAvatar
+            src={post.author.avatarLink}
+            alt="avatar"
+          />
+          {post.author.firstName}&nbsp;
+          {post.author.lastName}
       </CreatedSection>
       <Markdown dangerouslySetInnerHTML={{ __html: sanitizedContent }} />
     </Container>
