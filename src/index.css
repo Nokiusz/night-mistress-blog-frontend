@@ -48,20 +48,3 @@ input[type=search]:focus
   border: none;
   outline: none;
 }
-
-.spinner {
-  margin-right: 0.5rem;
-  animation: spin 1s linear infinite;
-  color: '#CB2A33';
-  width: 2rem;
-  height: 2rem;
-}
-
-@keyframes spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}

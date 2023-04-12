@@ -10,6 +10,7 @@ export interface Post {
   postId: number,
   friendlyName: string,
   thumbnail: string,
+  description: string,
   author: Author,
   created: string,
   title: string,

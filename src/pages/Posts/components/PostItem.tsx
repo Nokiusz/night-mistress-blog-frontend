@@ -1,4 +1,6 @@
 import calendarIcon from '@assets/calendarIcon.svg';
+import defaultPostThumbnail from '@assets/defaultPostThumbnail.jpg';
+import defaultAvatar from '@assets/defaultAvatar.svg';
 import React from 'react';
 
 import { Post } from '../../../types';
@@ -6,6 +8,7 @@ import formatDate from '../../../utils/formatDate';
 import {
   AuthorAvatar,
   CreatedSection,
+  Description,
   LeftSection,
   LeftTopSection,
   PostContainer,
@@ -14,17 +17,16 @@ import {
   Tags,
   TitleLink
 } from '../Posts.styles';
+import { Link } from 'react-router-dom';
 
 interface PostItemProps {
   post: Post;
 }
 
 const PostItem = ({ post }: PostItemProps) => {
-  const { postId, tags, title, created, author, friendlyName, thumbnail } = post;
+  const { postId, tags, title, created, author, friendlyName, thumbnail, description } = post;
   const { firstName, lastName, avatarLink } = author;
 
-  const defaultThumbnail =
-    'https://static.wikia.nocookie.net/versus-compendium/images/3/39/Link_ALTTP.png/revision/latest?cb=20180926100609';
   return (
     <PostContainer
       tabIndex={0}
@@ -38,25 +40,32 @@ const PostItem = ({ post }: PostItemProps) => {
             ))}
           </Tags>
           <TitleLink to={`/post/${friendlyName}`}>{title}</TitleLink>
+          <Description>{description}</Description>
         </LeftTopSection>
         <CreatedSection>
-          <img
-            src={calendarIcon}
-            alt="calendar icon"
-            width={16}
-            height={16}
-          />
-          {formatDate(created)}
-          <AuthorAvatar
-            src={avatarLink}
-            alt="avatar"
-          />
-          {firstName}&nbsp;
-          {lastName}
+          <div>
+            <img
+              src={calendarIcon}
+              alt="calendar icon"
+              width={16}
+              height={16}
+            />
+            {formatDate(created)}
+          </div>
+          <div>
+            <AuthorAvatar
+              src={avatarLink || defaultAvatar}
+              alt="avatar"
+            />
+            {firstName}&nbsp;
+            {lastName}
+          </div>
         </CreatedSection>
       </LeftSection>
       <RightSection>
-        <img src={thumbnail || defaultThumbnail} />
+      <Link to={`/post/${friendlyName}`}>
+        <img src={thumbnail || defaultPostThumbnail} />
+      </Link>
       </RightSection>
     </PostContainer>
   );

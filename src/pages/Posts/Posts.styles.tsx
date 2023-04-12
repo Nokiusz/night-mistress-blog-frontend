@@ -23,6 +23,12 @@ export const PostContainer = styled.div`
   border-radius: 4px;
   padding: 16px;
   gap: 4px;
+  animation: opacity 0.5s;
+
+  @keyframes opacity {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  } 
 `;
 
 export const AuthorAvatar = styled.img`
@@ -34,7 +40,23 @@ export const AuthorAvatar = styled.img`
 export const CreatedSection = styled.div`
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 16px;
+
+  & div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    font-weight: 300;
+  }
+`;
+
+export const Description = styled.div`
+  font-weight: 400;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
 `;
 
 export const Tag = styled.div`
@@ -46,8 +68,9 @@ export const Tag = styled.div`
   width: fit-content;
   border-radius: 4px;
 
-  height: 19px;
-  padding: 4px;
+  padding: 0 8px;
+  font-size: 15px;
+  font-weight: 400;
 `;
 
 export const Tags = styled.div`
@@ -57,6 +80,7 @@ export const Tags = styled.div`
 `;
 
 export const TitleLink = styled(Link)`
+  display: block;
   font-style: normal;
   font-weight: 600;
   font-size: 22px;
@@ -64,6 +88,7 @@ export const TitleLink = styled(Link)`
   color: ${({ theme }: ThemeProps) => theme.colors.white};
   text-decoration: none;
   transition: 0.2s ease;
+  padding: 8px 0;
 
   :hover {
     text-decoration: underline;
@@ -89,6 +114,8 @@ export const LeftSection = styled.div`
 export const RightSection = styled.div`
   & img {
     border-radius: 4px;
+    max-width: 300px;
+    height: 170px;
   }
 `;
 
