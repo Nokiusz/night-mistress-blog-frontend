@@ -8,6 +8,7 @@ export const Header = styled.header`
   left: 0px;
   background-color: ${({ theme }: ThemeProps) => theme.colors.darkblue};
   width: 100%;
+  z-index: 999;
 `;
 
 export const Container = styled.div`

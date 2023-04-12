@@ -1,4 +1,5 @@
 import calendarIcon from '@assets/calendarIcon.svg';
+import defaultAvatar from '@assets/defaultAvatar.svg';
 import DOMPurify from 'dompurify';
 import React from 'react';
 import { useParams } from 'react-router-dom';
@@ -6,7 +7,7 @@ import { useParams } from 'react-router-dom';
 import { Spinner } from '../../components';
 import usePost from '../../hooks/usePost';
 import formatDate from '../../utils/formatDate';
-import { AuthorAvatar, Container, CreatedSection, Markdown, NotFoundPost, Tag, Tags } from './Post.styles';
+import { AuthorAvatar, Container, CreatedSection, Markdown, NotFoundPost, Tag, Tags, TitleText } from './Post.styles';
 
 const Post = () => {
   const { slug } = useParams();
@@ -34,8 +35,9 @@ const Post = () => {
           <Tag>{tag}</Tag>
         ))}
       </Tags>
-      <h1>{post.title}</h1>
+      <TitleText>{post.title}</TitleText>
       <CreatedSection>
+        <div>
           <img
             src={calendarIcon}
             alt="calendar icon"
@@ -43,12 +45,15 @@ const Post = () => {
             height={16}
           />
           {formatDate(post.created)}
+        </div>
+        <div>
           <AuthorAvatar
-            src={post.author.avatarLink}
+            src={post.author.avatarLink || defaultAvatar}
             alt="avatar"
           />
           {post.author.firstName}&nbsp;
           {post.author.lastName}
+        </div>
       </CreatedSection>
       <Markdown dangerouslySetInnerHTML={{ __html: sanitizedContent }} />
     </Container>
