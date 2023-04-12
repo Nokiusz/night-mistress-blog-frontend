@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 
 export const Header = styled.header`
   position: sticky;
+  top: 0px;
+  left: 0px;
   background-color: ${({ theme }: ThemeProps) => theme.colors.darkblue};
   width: 100%;
 `;
