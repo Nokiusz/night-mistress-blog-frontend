@@ -8,6 +8,7 @@ import formatDate from '../../../utils/formatDate';
 import {
   AuthorAvatar,
   CreatedSection,
+  Description,
   LeftSection,
   LeftTopSection,
   PostContainer,
@@ -23,7 +24,7 @@ interface PostItemProps {
 }
 
 const PostItem = ({ post }: PostItemProps) => {
-  const { postId, tags, title, created, author, friendlyName, thumbnail } = post;
+  const { postId, tags, title, created, author, friendlyName, thumbnail, description } = post;
   const { firstName, lastName, avatarLink } = author;
 
   return (
@@ -39,6 +40,7 @@ const PostItem = ({ post }: PostItemProps) => {
             ))}
           </Tags>
           <TitleLink to={`/post/${friendlyName}`}>{title}</TitleLink>
+          <Description>{description}</Description>
         </LeftTopSection>
         <CreatedSection>
           <div>

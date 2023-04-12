@@ -36,6 +36,11 @@ export const CreatedSection = styled.div`
   }
 `;
 
+export const Description = styled.div`
+  font-weight: 400;
+  padding: 8px 0;
+`;
+
 export const Tag = styled.div`
   display: flex;
   flex-direction: row;

@@ -7,7 +7,7 @@ import { useParams } from 'react-router-dom';
 import { Spinner } from '../../components';
 import usePost from '../../hooks/usePost';
 import formatDate from '../../utils/formatDate';
-import { AuthorAvatar, Container, CreatedSection, Markdown, NotFoundPost, Tag, Tags, TitleText } from './Post.styles';
+import { AuthorAvatar, Container, CreatedSection, Description, Markdown, NotFoundPost, Tag, Tags, TitleText } from './Post.styles';
 
 const Post = () => {
   const { slug } = useParams();
@@ -55,6 +55,7 @@ const Post = () => {
           {post.author.lastName}
         </div>
       </CreatedSection>
+      <Description>{post.description}</Description>
       <Markdown dangerouslySetInnerHTML={{ __html: sanitizedContent }} />
     </Container>
   ) : (
