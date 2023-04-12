@@ -12,7 +12,6 @@
   },
   "plugins": ["@typescript-eslint", "prettier"],
   "rules": {
-    "indent": ["error", 2],
     "newline-per-chained-call": ["error", { "ignoreChainWithDepth": 2 }],
     "no-multiple-empty-lines": ["error", { "max": 1 }],
     "sort-imports": [
