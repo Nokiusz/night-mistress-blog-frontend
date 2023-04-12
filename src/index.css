@@ -38,6 +38,17 @@ a:focus {
   text-decoration: none;
 }
 
+input {
+  font-family: 'Open Sans', Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+input[type=search],
+input[type=search]:focus
+{
+  border: none;
+  outline: none;
+}
+
 .spinner {
   margin-right: 0.5rem;
   animation: spin 1s linear infinite;

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Logo } from './index';
+import { Search } from './Search';
 import { ButtonLink, ButtonsGroup, Container, Header } from './Navbar.styles';
 
 const Navbar = () => {
@@ -7,9 +8,7 @@ const Navbar = () => {
     <Header>
       <Container>
         <Logo />
-        <div>
-          <h1>searchBox</h1>
-        </div>
+        <Search />
         <ButtonsGroup>
           <ButtonLink variant='primary' to="/register">
             Sign Up

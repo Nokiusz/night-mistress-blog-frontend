@@ -3,7 +3,7 @@ import { ThemeProps } from '../theme';
 import { Link } from 'react-router-dom';
 
 export const Header = styled.header`
-  position: static;
+  position: sticky;
   background-color: ${({ theme }: ThemeProps) => theme.colors.darkblue};
   width: 100%;
 `;
