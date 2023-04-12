@@ -1,13 +1,14 @@
 import styled from 'styled-components';
 
 import { ThemeProps } from '../../components/theme';
+import { Z_INDEX } from '../../utils/zindex';
 
 export const SpinnerContainer = styled.div`
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 1000;
+  z-index: ${Z_INDEX.SPINNER};
 
   & svg {
     margin-right: 0.5rem;

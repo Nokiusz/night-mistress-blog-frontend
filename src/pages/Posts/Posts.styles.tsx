@@ -115,7 +115,7 @@ export const RightSection = styled.div`
   & img {
     border-radius: 4px;
     max-width: 300px;
-    height: 171px;
+    height: 170px;
   }
 `;
 

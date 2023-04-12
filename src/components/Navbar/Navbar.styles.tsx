@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { ThemeProps } from '../theme';
 import { Link } from 'react-router-dom';
+import { Z_INDEX } from '../../utils/zindex';
 
 export const Header = styled.header`
   position: sticky;
@@ -8,7 +9,7 @@ export const Header = styled.header`
   left: 0px;
   background-color: ${({ theme }: ThemeProps) => theme.colors.darkblue};
   width: 100%;
-  z-index: 999;
+  z-index: ${Z_INDEX.NAVBAR};
 `;
 
 export const Container = styled.div`
