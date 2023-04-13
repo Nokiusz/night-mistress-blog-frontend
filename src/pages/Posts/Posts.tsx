@@ -1,5 +1,4 @@
 import React from 'react';
-
 import { Spinner } from '../../components';
 import usePosts from '../../hooks/usePosts';
 import PostItem from './components/PostItem';

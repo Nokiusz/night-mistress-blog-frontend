@@ -3,7 +3,6 @@ import defaultAvatar from '@assets/defaultAvatar.svg';
 import DOMPurify from 'dompurify';
 import React from 'react';
 import { useParams } from 'react-router-dom';
-
 import { Spinner } from '../../components';
 import usePost from '../../hooks/usePost';
 import formatDate from '../../utils/formatDate';

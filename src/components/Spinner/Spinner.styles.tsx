@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-
 import { ThemeProps } from '../../components/theme';
 import { Z_INDEX } from '../../utils/zindex';
 
