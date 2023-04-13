@@ -75,3 +75,9 @@ export const ButtonLink = styled(Link)<ButtonLinkProps>`
       variant === 'secondary' ? 'inset 0px 0px 0px 2px' + theme.colors.white : 'transparent'};
   }
 `;
+
+export const AuthorAvatar = styled.img`
+  border-radius: 50%;
+  width: 48px;
+  aspect-ratio: 1;
+`;
