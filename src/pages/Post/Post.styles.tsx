@@ -10,7 +10,6 @@ export const Container = styled.div`
   background-color: ${({ theme }: ThemeProps) => theme.colors.darkblue};
   margin-top: 16px;
   border-radius: 4px;
-
   animation: opacity 0.5s;
 
   @keyframes opacity {
@@ -56,7 +55,6 @@ export const Tag = styled.div`
   background-color: ${({ theme }: ThemeProps) => theme.colors.red};
   width: fit-content;
   border-radius: 4px;
-
   padding: 0 8px;
   font-size: 15px;
   font-weight: 400;

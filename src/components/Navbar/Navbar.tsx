@@ -1,6 +1,5 @@
 import React from 'react';
-import { Logo } from './index';
-import { Search } from './Search';
+import { Logo, Search } from '.';
 import { ButtonLink, ButtonsGroup, Container, Header } from './Navbar.styles';
 
 const Navbar = () => {

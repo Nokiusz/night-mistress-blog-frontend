@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-
 import { ThemeProps } from '../../components/theme';
 
 export const Container = styled.div`
@@ -67,7 +66,6 @@ export const Tag = styled.div`
   background-color: ${({ theme }: ThemeProps) => theme.colors.red};
   width: fit-content;
   border-radius: 4px;
-
   padding: 0 8px;
   font-size: 15px;
   font-weight: 400;
