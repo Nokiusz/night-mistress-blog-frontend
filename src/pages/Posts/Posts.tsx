@@ -1,5 +1,5 @@
 import React from 'react';
-import { Spinner } from '../../components';
+import { Navbar, Spinner } from '../../components';
 import usePosts from '../../hooks/usePosts';
 import PostItem from './components/PostItem';
 import { AmmoutOfPosts, Container } from './Posts.styles';
@@ -10,16 +10,19 @@ const Posts = () => {
   const list = posts.map((post) => <PostItem post={post} />);
 
   return (
-    <Container>
-      {loading ? (
-        <Spinner />
-      ) : (
-        <>
-          <AmmoutOfPosts>Total amount of posts: {posts.length}</AmmoutOfPosts>
-          {list}
-        </>
-      )}
-    </Container>
+    <>
+      <Navbar />
+      <Container>
+        {loading ? (
+          <Spinner />
+        ) : (
+          <>
+            <AmmoutOfPosts>Total amount of posts: {posts.length}</AmmoutOfPosts>
+            {list}
+          </>
+        )}
+      </Container>
+    </>
   );
 };
 

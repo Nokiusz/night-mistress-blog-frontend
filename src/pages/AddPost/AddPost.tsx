@@ -1,7 +1,13 @@
 import React from 'react';
+import { Navbar } from '../../components';
 
 const AddPost = () => {
-  return <div>AddPost</div>;
+  return (
+    <>
+      <Navbar />
+      <div>AddPost</div>
+    </>
+  );
 };
 
 export default AddPost;
