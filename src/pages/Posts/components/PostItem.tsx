@@ -36,7 +36,7 @@ const PostItem = ({ post }: PostItemProps) => {
         <LeftTopSection>
           <Tags>
             {tags.map((tag) => (
-              <Tag>{tag}</Tag>
+              <Tag key={tag}>{tag}</Tag>
             ))}
           </Tags>
           <TitleLink to={`/post/${friendlyName}`}>{title}</TitleLink>
@@ -63,9 +63,9 @@ const PostItem = ({ post }: PostItemProps) => {
         </CreatedSection>
       </LeftSection>
       <RightSection>
-      <Link to={`/post/${friendlyName}`}>
-        <img src={thumbnail || defaultPostThumbnail} />
-      </Link>
+        <Link to={`/post/${friendlyName}`}>
+          <img src={thumbnail || defaultPostThumbnail} />
+        </Link>
       </RightSection>
     </PostContainer>
   );

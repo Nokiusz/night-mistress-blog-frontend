@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Input, InputRef, notification } from 'antd';
+import { Input, InputRef } from 'antd';
 import { Button, Container, Heading, InputWithLabel, Warning, Wrapper } from './Login.styles';
 import useAuth from '../../hooks/useAuth';
-import { Navbar, Spinner } from '../../components';
+import { Spinner } from '../../components';
 import { useNavigate } from 'react-router-dom';
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
 
@@ -12,7 +12,6 @@ const Login = () => {
   const [warning, setWarning] = useState('');
   const [loading, setLoading] = useState(false);
   const { login, loginError, user } = useAuth();
-  const [api, contextHolder] = notification.useNotification();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -36,10 +35,8 @@ const Login = () => {
 
   return (
     <>
-      <Navbar />
       <Wrapper>
         <Container>
-          {contextHolder}
           <Heading>Log in</Heading>
           {loading && <Spinner />}
           <InputWithLabel>
