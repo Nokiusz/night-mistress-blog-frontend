@@ -12,7 +12,7 @@ const Login = () => {
   const passwordRef = useRef<InputRef>(null);
   const [warning, setWarning] = useState('');
   const [loading, setLoading] = useState(false);
-  const { login, loginError } = useAuth();
+  const { login, loginError, user } = useAuth();
   const [api, contextHolder] = notification.useNotification();
   const navigate = useNavigate();
 
@@ -30,9 +30,8 @@ const Login = () => {
     }
     setLoading(true);
 
-    const response = await login({ email, password });
-
-    if (loginError === '') {
+    await login({ email, password });
+    if (user) {
       openNotificationWithIcon('success');
       setTimeout(() => {
         navigate('/');
@@ -40,7 +39,6 @@ const Login = () => {
     }
 
     setLoading(false);
-    // console.log({ email, password });
   };
 
   return (
