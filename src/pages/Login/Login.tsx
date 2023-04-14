@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react';
 import { Input, InputRef, notification } from 'antd';
 import { Button, Container, Heading, InputWithLabel, Warning, Wrapper } from './Login.styles';
 import useAuth from '../../hooks/useAuth';
-import { Spinner } from '../../components';
+import { Navbar, Spinner } from '../../components';
 import { useNavigate } from 'react-router-dom';
 
 type NotificationType = 'success' | 'info' | 'warning' | 'error';
@@ -22,6 +22,12 @@ const Login = () => {
     });
   };
 
+  React.useEffect(() => {
+    if (user) {
+      navigate('/');
+    }
+  }, [user]);
+
   const onLogin = async () => {
     const email = emailRef.current?.input?.value;
     const password = passwordRef.current?.input?.value;
@@ -31,52 +37,49 @@ const Login = () => {
     setLoading(true);
 
     await login({ email, password });
-    if (user) {
-      openNotificationWithIcon('success');
-      setTimeout(() => {
-        navigate('/');
-      }, 2000);
-    }
 
     setLoading(false);
   };
 
   return (
-    <Wrapper>
-      <Container>
-        {contextHolder}
-        <Heading>Log in</Heading>
-        {loading && <Spinner />}
-        <InputWithLabel>
-          <label htmlFor="name">Email*</label>
-          <Input
-            id="email"
-            name="email"
-            ref={emailRef}
-            placeholder="Email"
-          />
-        </InputWithLabel>
-        <InputWithLabel>
-          <label htmlFor="password">Password*</label>
-          <Input.Password
-            id="password"
-            name="password"
-            type="password"
-            placeholder="Password"
-            ref={passwordRef}
-            visibilityToggle
-          />
-        </InputWithLabel>
-        <Warning>{loginError}</Warning>
-        {/* TODO: make a react component out of this styled */}
-        <Button
-          onClick={onLogin}
-          variant="primary"
-        >
-          {loading ? 'Loading..' : 'Log in'}
-        </Button>
-      </Container>
-    </Wrapper>
+    <>
+      <Navbar />
+      <Wrapper>
+        <Container>
+          {contextHolder}
+          <Heading>Log in</Heading>
+          {loading && <Spinner />}
+          <InputWithLabel>
+            <label htmlFor="name">Email*</label>
+            <Input
+              id="email"
+              name="email"
+              ref={emailRef}
+              placeholder="Email"
+            />
+          </InputWithLabel>
+          <InputWithLabel>
+            <label htmlFor="password">Password*</label>
+            <Input.Password
+              id="password"
+              name="password"
+              type="password"
+              placeholder="Password"
+              ref={passwordRef}
+              visibilityToggle
+            />
+          </InputWithLabel>
+          <Warning>{loginError || warning}</Warning>
+          {/* TODO: make a react component out of this styled */}
+          <Button
+            onClick={onLogin}
+            variant="primary"
+          >
+            {loading ? 'Loading..' : 'Log in'}
+          </Button>
+        </Container>
+      </Wrapper>
+    </>
   );
 };
 
