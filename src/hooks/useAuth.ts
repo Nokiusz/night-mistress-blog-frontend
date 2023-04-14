@@ -41,7 +41,8 @@ const useAuth = () => {
         body: JSON.stringify({ email, password, firstName, lastName, avatarLink })
       });
 
-      await response.json();
+     const data = await response.json();
+      console.log(data);
     } catch (error) {
       console.error(error);
     }

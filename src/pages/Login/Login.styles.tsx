@@ -22,11 +22,6 @@ export const Container = styled.div`
   height: 100%;
   max-width: 450px;
   max-height: 380px;
-
-  input,
-  .ant-input-affix-wrapper {
-    width: 280px;
-  }
 `;
 
 export const InputWithLabel = styled.div`
@@ -42,6 +37,26 @@ export const InputWithLabel = styled.div`
     line-height: 22px;
     text-align: center;
     color: ${({ theme }: ThemeProps) => theme.colors.white};
+  }
+  .ant-input-affix-wrapper,
+  .ant-input,
+  .ant-input-password {
+    display: flex;
+    align-items: center;
+    outline: none;
+    width: 280px;
+    background-color: transparent;
+    padding: 2px 15px 4px 5px;
+    gap: 7px;
+    height: 29px;
+    border: none;
+    border-bottom: 1px solid #98a0b0;
+    border-radius: 2px;
+    color: ${({ theme }: ThemeProps) => theme.colors.grayer};
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 22px;
   }
 `;
 
