@@ -1,11 +1,10 @@
-import React, { useRef, useState } from 'react';
-import { Input, InputRef, notification } from 'antd';
+import React, { useEffect, useRef, useState } from 'react';
+import { Input, InputRef } from 'antd';
 import { Button, Container, Heading, InputWithLabel, Warning, Wrapper } from './Login.styles';
 import useAuth from '../../hooks/useAuth';
-import { Navbar, Spinner } from '../../components';
+import { Spinner } from '../../components';
 import { useNavigate } from 'react-router-dom';
-
-type NotificationType = 'success' | 'info' | 'warning' | 'error';
+import { LockOutlined, UserOutlined } from '@ant-design/icons';
 
 const Login = () => {
   const emailRef = useRef<InputRef>(null);
@@ -13,16 +12,9 @@ const Login = () => {
   const [warning, setWarning] = useState('');
   const [loading, setLoading] = useState(false);
   const { login, loginError, user } = useAuth();
-  const [api, contextHolder] = notification.useNotification();
   const navigate = useNavigate();
 
-  const openNotificationWithIcon = (type: NotificationType) => {
-    api[type]({
-      message: 'Login Successful, redirecting to home page...'
-    });
-  };
-
-  React.useEffect(() => {
+  useEffect(() => {
     if (user) {
       navigate('/');
     }
@@ -43,10 +35,8 @@ const Login = () => {
 
   return (
     <>
-      <Navbar />
       <Wrapper>
         <Container>
-          {contextHolder}
           <Heading>Log in</Heading>
           {loading && <Spinner />}
           <InputWithLabel>
@@ -56,6 +46,7 @@ const Login = () => {
               name="email"
               ref={emailRef}
               placeholder="Email"
+              prefix={<UserOutlined />}
             />
           </InputWithLabel>
           <InputWithLabel>
@@ -67,6 +58,7 @@ const Login = () => {
               placeholder="Password"
               ref={passwordRef}
               visibilityToggle
+              prefix={<LockOutlined />}
             />
           </InputWithLabel>
           <Warning>{loginError || warning}</Warning>

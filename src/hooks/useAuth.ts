@@ -15,6 +15,12 @@ type LoginProps = {
   password: string;
 };
 
+export const getUser = async (token: string): Promise<Author | null> => {
+  const response = await fetch(`${BASE_URL}/Author/${token}`);
+  const data = await response.json();
+  return data;
+};
+
 const useAuth = () => {
   const [user, setUser] = useState<Author | null>(null);
   const loginError = useRef('');
@@ -22,12 +28,11 @@ const useAuth = () => {
   useEffect(() => {
     const token = localStorage.getItem('nmblog_token');
     if (token) {
-      const getUser = async () => {
-        const response = await fetch(`${BASE_URL}/Author/${token}`);
-        const data = await response.json();
+      const fetchUser = async () => {
+        const data = await getUser(token);
         setUser(data);
       };
-      getUser();
+      fetchUser();
     }
   }, []);
 
@@ -41,7 +46,8 @@ const useAuth = () => {
         body: JSON.stringify({ email, password, firstName, lastName, avatarLink })
       });
 
-      await response.json();
+     const data = await response.json();
+      console.log(data);
     } catch (error) {
       console.error(error);
     }
@@ -82,7 +88,7 @@ const useAuth = () => {
     setUser(null);
   };
 
-  return { user, signUp, login, loginError: loginError.current, logout };
+  return { user, signUp, login, loginError: loginError.current, logout, getUser };
 };
 
 export default useAuth;

@@ -3,11 +3,13 @@ import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 
 import { AddPost, Login, PageNotFound, Post, Posts, Profile, Register } from './pages';
 import { Layout } from './App.styles';
+import { Navbar } from './components';
 
 function App() {
   return (
     <Layout>
       <Router>
+        <Navbar />
         <Routes>
           <Route
             path="/"
