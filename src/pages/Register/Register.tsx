@@ -1,9 +1,9 @@
 import React, { useRef, useState } from 'react';
 import { Spinner } from '../../components';
-import { Button, Heading, InputWithLabel, Warning, Wrapper } from '../Login/Login.styles';
+import { Button, Container, Heading, InputWithLabel, Warning, Wrapper } from '../Login/Login.styles';
 import { Input, InputRef, notification } from 'antd';
 import useAuth from '../../hooks/useAuth';
-import { Container, NameInputs } from './Register.styles';
+import { NameInputs } from './Register.styles';
 import { LockOutlined, MailOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
 

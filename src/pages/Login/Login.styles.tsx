@@ -11,23 +11,18 @@ export const Wrapper = styled.div`
 `;
 
 export const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  display: grid;
   gap: 16px;
   background-color: ${({ theme }: ThemeProps) => theme.colors.darkblue};
   border-radius: 2px;
-  width: 100%;
-  height: 100%;
-  max-width: 450px;
-  max-height: 380px;
+  padding: 50px 85px;
 `;
 
 export const InputWithLabel = styled.div`
   display: flex;
   flex-direction: column;
   gap: 4px;
+  justify-content: center;
 
   label {
     display: flex;
@@ -38,16 +33,18 @@ export const InputWithLabel = styled.div`
     text-align: center;
     color: ${({ theme }: ThemeProps) => theme.colors.white};
   }
+
   .ant-input-affix-wrapper,
   .ant-input,
-  .ant-input-password {
+  .ant-input-password{
     display: flex;
     align-items: center;
     outline: none;
-    width: 280px;
+    min-width: 280px;
+    width: 100%;
     background-color: transparent;
     padding: 2px 15px 4px 5px;
-    gap: 7px;
+    gap: 8px;
     height: 29px;
     border: none;
     border-bottom: 1px solid #98a0b0;
@@ -58,6 +55,15 @@ export const InputWithLabel = styled.div`
     font-size: 13px;
     line-height: 22px;
   }
+
+  .anticon.anticon-eye-invisible.ant-input-password-icon,
+  .anticon.anticon-eye.ant-input-password-icon {
+    color: ${({ theme }: ThemeProps) => theme.colors.grayer};
+  }
+
+  .ant-input::placeholder {
+    color: ${({ theme }: ThemeProps) => theme.colors.grayer};
+  }
 `;
 
 export const Heading = styled.h1`
@@ -65,7 +71,7 @@ export const Heading = styled.h1`
   font-weight: 600;
   font-size: 28px;
   line-height: 22px;
-  margin-bottom: 40px;
+  margin-bottom: 30px;
   text-align: center;
   color: ${({ theme }: ThemeProps) => theme.colors.white};
 `;
@@ -93,6 +99,7 @@ export const Button = styled.button<ButtonLinkProps>`
   max-width: 280px;
   transition: 0.2s ease-out;
   color: ${({ theme }: ThemeProps) => theme.colors.white};
+  margin: 0 auto;
 
   :hover {
     background-color: ${({ theme, variant }) => (variant === 'primary' ? theme.colors.white : 'transparent')};
@@ -107,6 +114,7 @@ export const Warning = styled.p`
   font-weight: 600;
   font-size: 12px;
   line-height: 22px;
+  height: 22px;
   text-align: center;
   color: ${({ theme }: ThemeProps) => theme.colors.red};
 `;
