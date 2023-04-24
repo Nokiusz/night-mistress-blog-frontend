@@ -13,13 +13,13 @@ export const Container = styled.div`
   animation: opacity 0.5s;
 
   @keyframes opacity {
-    from { opacity: 0; }
-    to   { opacity: 1; }
-  } 
-`;
-
-export const Markdown = styled.div`
-  overflow-x: scroll;
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
 `;
 
 export const AuthorAvatar = styled.img`
