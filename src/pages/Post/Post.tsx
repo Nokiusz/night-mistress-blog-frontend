@@ -1,6 +1,5 @@
 import calendarIcon from '@assets/calendarIcon.svg';
 import defaultAvatar from '@assets/defaultAvatar.svg';
-import DOMPurify from 'dompurify';
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { Spinner } from '../../components';
@@ -11,12 +10,12 @@ import {
   Container,
   CreatedSection,
   Description,
-  Markdown,
   NotFoundPost,
   Tag,
   Tags,
   TitleText
 } from './Post.styles';
+import ReactMarkdown from 'react-markdown';
 
 const Post = () => {
   const { slug } = useParams();
@@ -35,14 +34,12 @@ const Post = () => {
     return <Spinner />;
   }
 
-  const sanitizedContent = DOMPurify.sanitize(decodeURIComponent(post?.content));
-
   return !loading ? (
     <>
       <Container>
         <Tags>
           {post.tags.map((tag) => (
-            <Tag>{tag}</Tag>
+            <Tag key={Date.now()}>{tag}</Tag>
           ))}
         </Tags>
         <TitleText>{post.title}</TitleText>
@@ -66,7 +63,7 @@ const Post = () => {
           </div>
         </CreatedSection>
         <Description>{post.description}</Description>
-        <Markdown dangerouslySetInnerHTML={{ __html: sanitizedContent }} />
+        <ReactMarkdown>{atob(post?.content)}</ReactMarkdown>
       </Container>
     </>
   ) : (

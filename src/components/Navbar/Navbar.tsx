@@ -22,8 +22,7 @@ const Navbar = () => {
         }
       }
     };
-    console.log('user', user);
-    console.log('pathname', pathname);
+
     fetchUser();
   }, [user, pathname]);
 
