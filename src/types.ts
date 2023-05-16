@@ -18,4 +18,16 @@ export interface Post {
   tags: string[]
 }
 
+export interface PostToCreate {
+
+  thumbnail: string,
+  description: string,
+  friendlyName: string,
+  authorId: number,
+  created: string,
+  title: string,
+  content: string,
+  tags: string[]
+}
+
 export type Posts = Array<Post>

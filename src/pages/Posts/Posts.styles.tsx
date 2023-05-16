@@ -25,9 +25,13 @@ export const PostContainer = styled.div`
   animation: opacity 0.5s;
 
   @keyframes opacity {
-    from { opacity: 0; }
-    to   { opacity: 1; }
-  } 
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
 `;
 
 export const AuthorAvatar = styled.img`
@@ -118,3 +122,17 @@ export const RightSection = styled.div`
 `;
 
 export const LeftTopSection = styled.div``;
+
+export const DeleteButton = styled.div`
+  display: flex;
+  justify-content: center !important;
+  align-items: center;
+  width: 20px;
+  height: 20px;
+  background: ${({ theme }: ThemeProps) => theme.colors.red};
+  border-radius: 2px;
+
+  :hover {
+    cursor: pointer;
+  }
+`;
