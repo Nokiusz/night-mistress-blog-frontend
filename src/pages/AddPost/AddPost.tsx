@@ -27,14 +27,12 @@ const AddPost = () => {
 
   const navigate = useNavigate();
 
-  console.log('user', user);
-  // TODO: This can be used when we implement Adding posts
   const handleFileInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const files = event.target.files;
     if (files && files.length > 0) {
       const file = files[0];
-      console.log('file', file);
       const reader = new FileReader();
+
       reader.onload = (e) => {
         setFileState({
           file,
@@ -46,8 +44,6 @@ const AddPost = () => {
   };
 
   const addPost = async (post: PostToCreate) => {
-    console.log('post', post);
-
     if (!user) return;
 
     const fetchOptions = {
@@ -63,12 +59,9 @@ const AddPost = () => {
         navigate('/');
       } else {
         alert('Error adding post');
-        console.log('error', response);
       }
     });
   };
-
-  console.log('fileState', fileState);
 
   return (
     <>
