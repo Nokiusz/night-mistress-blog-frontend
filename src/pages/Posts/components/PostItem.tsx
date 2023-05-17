@@ -1,13 +1,14 @@
 import calendarIcon from '@assets/calendarIcon.svg';
 import defaultPostThumbnail from '@assets/defaultPostThumbnail.jpg';
 import defaultAvatar from '@assets/defaultAvatar.svg';
-import React from 'react';
+import React, { useState } from 'react';
 
 import { Post } from '../../../types';
 import formatDate from '../../../utils/formatDate';
 import {
   AuthorAvatar,
   CreatedSection,
+  DeleteButton,
   Description,
   LeftSection,
   LeftTopSection,
@@ -19,6 +20,10 @@ import {
 } from '../Posts.styles';
 import { Link } from 'react-router-dom';
 
+import { DeleteOutlined } from '@ant-design/icons';
+import { Modal } from 'antd';
+import { BASE_URL } from '../../../constants';
+
 interface PostItemProps {
   post: Post;
 }
@@ -26,6 +31,21 @@ interface PostItemProps {
 const PostItem = ({ post }: PostItemProps) => {
   const { postId, tags, title, created, author, friendlyName, thumbnail, description } = post;
   const { firstName, lastName, avatarLink } = author;
+
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const deletePost = async (postId: number) => {
+    if (!postId) return;
+    const options = {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    };
+
+    fetch(`${BASE_URL}/Post/${postId}`, options);
+    window.location.reload();
+  };
 
   return (
     <PostContainer
@@ -60,6 +80,9 @@ const PostItem = ({ post }: PostItemProps) => {
             {firstName}&nbsp;
             {lastName}
           </div>
+          <DeleteButton onClick={() => setModalOpen(true)}>
+            <DeleteOutlined />
+          </DeleteButton>
         </CreatedSection>
       </LeftSection>
       <RightSection>
@@ -67,6 +90,16 @@ const PostItem = ({ post }: PostItemProps) => {
           <img src={thumbnail || defaultPostThumbnail} />
         </Link>
       </RightSection>
+
+      <Modal
+        title="Are you sure to delete this post?"
+        centered
+        open={modalOpen}
+        onOk={() => deletePost(postId)}
+        onCancel={() => setModalOpen(false)}
+      >
+        <p>Post id: {postId}</p>
+      </Modal>
     </PostContainer>
   );
 };

@@ -42,9 +42,25 @@ input {
   font-family: 'Open Sans', Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
 }
 
-input[type=search],
-input[type=search]:focus
-{
+input[type='search'],
+input[type='search']:focus {
   border: none;
   outline: none;
+}
+
+.ant-modal-content,
+.ant-modal-title {
+  background-color: rgb(13, 37, 73) !important;
+  color: #fff !important;
+}
+.ant-modal-content svg path {
+  fill: #fff !important;
+}
+
+.ant-modal-content .ant-btn-primary {
+  background-color: rgb(203, 42, 51);
+}
+
+.ant-modal-content .ant-btn-primary:hover {
+  background-color: rgb(172, 33, 40);
 }

@@ -15,7 +15,7 @@ const Navbar = () => {
   useEffect(() => {
     const fetchUser = async () => {
       const token = localStorage.getItem('nmblog_token');
-      if (token) {
+      if (token && !user) {
         const data = await getUser(token);
         if (data) {
           setUser(data);
