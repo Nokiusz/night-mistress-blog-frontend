@@ -4,7 +4,7 @@ import { ThemeProps } from '../../theme';
 export const Container = styled.div`
   position: relative;
 
-  .ant-select-selector{
+  .ant-select-selector {
     border-radius: 4px;
   }
 `;
