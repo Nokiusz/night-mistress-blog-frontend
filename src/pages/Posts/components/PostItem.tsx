@@ -2,6 +2,7 @@ import calendarIcon from '@assets/calendarIcon.svg';
 import defaultPostThumbnail from '@assets/defaultPostThumbnail.jpg';
 import defaultAvatar from '@assets/defaultAvatar.svg';
 import React, { useState } from 'react';
+import useAuth from '../../../hooks/useAuth';
 
 import { Post } from '../../../types';
 import formatDate from '../../../utils/formatDate';
@@ -29,6 +30,7 @@ interface PostItemProps {
 }
 
 const PostItem = ({ post }: PostItemProps) => {
+  const { user } = useAuth();
   const { postId, tags, title, created, author, friendlyName, thumbnail, description } = post;
   const { firstName, lastName, avatarLink } = author;
 
@@ -48,6 +50,7 @@ const PostItem = ({ post }: PostItemProps) => {
   };
 
   return (
+    
     <PostContainer
       tabIndex={0}
       key={postId}
@@ -80,9 +83,9 @@ const PostItem = ({ post }: PostItemProps) => {
             {firstName}&nbsp;
             {lastName}
           </div>
-          <DeleteButton onClick={() => setModalOpen(true)}>
+          {user && <DeleteButton onClick={() => setModalOpen(true)}>
             <DeleteOutlined />
-          </DeleteButton>
+          </DeleteButton>}
         </CreatedSection>
       </LeftSection>
       <RightSection>
