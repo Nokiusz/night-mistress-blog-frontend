@@ -76,6 +76,22 @@ export const ButtonLink = styled(Link)<ButtonLinkProps>`
   }
 `;
 
+export const Button = styled.button`
+  padding: 8px 14px;
+  width: 100%;
+  background-color: ${({ theme }: ThemeProps) => theme.colors.red};
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 13px;
+  transition: 0.2s ease-out;
+
+  :hover {
+    background-color: ${({ theme }: ThemeProps) => theme.colors.white};
+    color: ${({ theme }: ThemeProps) => theme.colors.red};
+    box-shadow: inset 0px 0px 0px 2px ${({ theme }: ThemeProps) => theme.colors.red};
+  }
+`;
+
 export const AuthorAvatar = styled.img`
   border-radius: 50%;
   width: 48px;
