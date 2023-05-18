@@ -3,7 +3,7 @@ import { Logo, Search } from '.';
 import { AuthorAvatar, Button, ButtonLink, ButtonsGroup, Container, Header } from './Navbar.styles';
 import useAuth from '../../hooks/useAuth';
 import defaultAvatar from '@assets/defaultAvatar.svg';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Author } from '../../types';
 import type { MenuProps } from 'antd';
 import { Dropdown, Space } from 'antd';
@@ -14,6 +14,7 @@ const Navbar = () => {
   const { pathname } = location;
   const [user, setUser] = useState<Author | null>(null);
   const { logout } = useAuth();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -31,6 +32,7 @@ const Navbar = () => {
 
   const handleLogout = () => {
     logout();
+    navigate('/');
     window.location.reload();
   };
 
@@ -38,17 +40,17 @@ const Navbar = () => {
     {
       key: '1',
       label: (
-        <a href="/add/post">
+        <Link to="/add/post">
           Add an article
-        </a>
+        </Link>
       ),
     },
     {
       key: '2',
       label: (
-        <a href="/profile">
+        <Link to="/profile">
           Edit profile
-        </a>
+        </Link>
       ),
     },
     {
