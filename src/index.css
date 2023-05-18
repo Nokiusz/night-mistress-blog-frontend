@@ -42,6 +42,11 @@ input {
   font-family: 'Open Sans', Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
 }
 
+button {
+  border: 0;
+  cursor: pointer;
+}
+
 input[type='search'],
 input[type='search']:focus {
   border: none;
@@ -53,8 +58,13 @@ input[type='search']:focus {
   background-color: rgb(13, 37, 73) !important;
   color: #fff !important;
 }
+
 .ant-modal-content svg path {
   fill: #fff !important;
+}
+
+.ant-dropdown-placement-bottomRight .ant-dropdown-arrow {
+  right: 16px;
 }
 
 .ant-modal-content .ant-btn-primary {
