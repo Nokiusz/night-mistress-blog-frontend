@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { Navbar, Spinner } from '../../components';
+import { Spinner } from '../../components';
 import { Button, Container, Heading, InputWithLabel, Warning, Wrapper } from '../Login/Login.styles';
 import { Input, InputRef, notification } from 'antd';
 import useAuth from '../../hooks/useAuth';
@@ -46,7 +46,6 @@ const Register = () => {
 
   return (
     <>
-      <Navbar />
       <Wrapper>
         <Container>
           {contextHolder}

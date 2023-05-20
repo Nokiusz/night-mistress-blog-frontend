@@ -7,6 +7,7 @@ export const SpinnerContainer = styled.div`
   z-index: ${Z_INDEX.SPINNER};
   width: 100%;
   height: 100%;
+  background: ${({ theme }: ThemeProps) => theme.colors.gray};
 `;
 
 export const SpinnerIcon = styled.div`

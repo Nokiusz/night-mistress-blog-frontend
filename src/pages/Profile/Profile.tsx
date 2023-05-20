@@ -1,24 +1,17 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import useAuth from '../../hooks/useAuth';
 import defaultAvatar from '@assets/defaultAvatar.svg';
 import { Button, Container, Heading, InputWithImage, InputWithLabel, Wrapper } from './Profile.styles';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Author, AuthorToUpdate } from '../../types';
 import { LinkOutlined, MailOutlined } from '@ant-design/icons';
 import { Input, InputRef } from 'antd';
 import { BASE_URL } from '../../constants';
-import { Navbar, Spinner } from '../../components';
+import { Spinner } from '../../components';
 
 const Profile = () => {
   const { getUser } = useAuth();
-  const location = useLocation();
-  const { pathname } = location;
   const [user, setUser] = useState<Author | null>(null);
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [email, setEmail] = useState('');
-  const [avatarLink, setAvatarLink] = useState('');
-
   const [loading, setLoading] = useState(false);
 
   const firstNameRef = useRef<InputRef>(null);
@@ -28,23 +21,16 @@ const Profile = () => {
 
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const fetchUser = async () => {
-      const token = localStorage.getItem('nmblog_token');
-      if (token && !user) {
-        const data = await getUser(token);
-        if (data) {
-          setUser(data);
-          setFirstName(data.firstName);
-          setLastName(data.lastName);
-          setEmail(data.email);
-          setAvatarLink(data.avatarLink);
-        }
+  const fetchUser = async () => {
+    const token = localStorage.getItem('nmblog_token');
+    if (token && !user) {
+      const data = await getUser(token);
+      if (data) {
+        setUser(data);
       }
-    };
-
-    fetchUser();
-  }, [user, pathname, getUser]);
+    }
+  };
+  fetchUser();
 
   const updateProfile = async (post: AuthorToUpdate & { authorId: number; avatarLink: string }) => {
     if (!user) return;
@@ -62,6 +48,8 @@ const Profile = () => {
       const response = await fetch(`${BASE_URL}/Author/${user.id}`, fetchOptions);
       if (response.ok) {
         navigate('/');
+        window.location.reload();
+        
       } else {
         throw new Error('Error updating profile');
       }
@@ -70,22 +58,8 @@ const Profile = () => {
     }
   };
 
-  const handleFirstNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFirstName(e.target.value);
-  };
-  const handleLastNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setLastName(e.target.value);
-  };
-  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setEmail(e.target.value);
-  };
-  const handleAvatarLinkChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setAvatarLink(e.target.value);
-  };
-
   return (
     <>
-      <Navbar />
       {loading && <Spinner />}
       <div>   
         {user && (
@@ -99,8 +73,7 @@ const Profile = () => {
                   <Input
                     id="avatarLink"
                     name="avatarLink"
-                    value={avatarLink}
-                    onChange={handleAvatarLinkChange}
+                    defaultValue={user.avatarLink}
                     ref={avatarLinkRef}
                     placeholder="Avatar URL"
                     prefix={<LinkOutlined />}
@@ -112,8 +85,7 @@ const Profile = () => {
                 <Input
                   id="firstName"
                   name="firstName"
-                  value={firstName}
-                  onChange={handleFirstNameChange}
+                  defaultValue={user.firstName}
                   ref={firstNameRef}
                   placeholder="First Name"
                 />
@@ -123,8 +95,7 @@ const Profile = () => {
                 <Input
                   id="lastName"
                   name="lastName"
-                  value={lastName}
-                  onChange={handleLastNameChange}
+                  defaultValue={user.lastName}
                   ref={lastNameRef}
                   placeholder="Last Name"
                 />
@@ -134,9 +105,8 @@ const Profile = () => {
                 <Input
                   id="email"
                   name="email"
-                  value={email}
+                  defaultValue={user.email}
                   ref={emailRef}
-                  onChange={handleEmailChange}
                   placeholder="Email"
                   prefix={<MailOutlined />}
                 />
@@ -147,7 +117,7 @@ const Profile = () => {
                     firstName: firstNameRef.current?.input?.value ?? '',
                     lastName: lastNameRef.current?.input?.value ?? '',
                     email: emailRef.current?.input?.value ?? '',
-                    avatarLink: avatarLink,
+                    avatarLink: avatarLinkRef.current?.input?.value ?? '',
                     authorId: user.id ?? 0
                   })
                 }

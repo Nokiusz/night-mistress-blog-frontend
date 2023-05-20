@@ -2,7 +2,7 @@ import calendarIcon from '@assets/calendarIcon.svg';
 import defaultAvatar from '@assets/defaultAvatar.svg';
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import { Navbar, Spinner } from '../../components';
+import { Spinner } from '../../components';
 import usePost from '../../hooks/usePost';
 import formatDate from '../../utils/formatDate';
 import {
@@ -36,7 +36,6 @@ const Post = () => {
 
   return !loading ? (
     <>
-      <Navbar />
       <Container>
         <Tags>
           {post.tags.map((tag) => (

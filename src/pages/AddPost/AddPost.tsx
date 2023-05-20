@@ -6,7 +6,6 @@ import { LockOutlined } from '@ant-design/icons';
 import useAuth from '../../hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
 import { PostToCreate } from '../../types';
-import { Navbar } from '../../components';
 
 interface FileState {
   file: File | null;
@@ -66,7 +65,6 @@ const AddPost = () => {
 
   return (
     <>
-      <Navbar />
       <Wrapper>
         <Container>
           <Heading>Add New Post</Heading>

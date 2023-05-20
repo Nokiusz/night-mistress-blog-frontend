@@ -1,5 +1,5 @@
 import React from 'react';
-import { Navbar, Spinner } from '../../components';
+import { Spinner } from '../../components';
 import usePosts from '../../hooks/usePosts';
 import PostItem from './components/PostItem';
 import { AmmoutOfPosts, Container } from './Posts.styles';
@@ -15,9 +15,8 @@ const Posts = () => {
   ));
 
   return (
-    <> 
+    <>
       <Container>
-        <Navbar />
         {loading ? (
           <Spinner />
         ) : (
