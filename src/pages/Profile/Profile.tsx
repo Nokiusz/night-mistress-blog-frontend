@@ -14,9 +14,8 @@ const Profile = () => {
   const emailRef = useRef<InputRef>(null);
   const avatarLinkRef = useRef<InputRef>(null);
 
-  if(!user) return;
-  
   const handleUpdateProfile = () => {
+    if(!user) return;
       updateProfile({
       firstName: firstNameRef.current?.input?.value ?? '',
       lastName: lastNameRef.current?.input?.value ?? '',
