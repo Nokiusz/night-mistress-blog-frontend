@@ -5,7 +5,7 @@ import { Input, InputRef } from 'antd';
 import { LockOutlined } from '@ant-design/icons';
 import useAuth from '../../hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
-import { Post, PostToCreate } from '../../types';
+import { PostToCreate } from '../../types';
 
 interface FileState {
   file: File | null;

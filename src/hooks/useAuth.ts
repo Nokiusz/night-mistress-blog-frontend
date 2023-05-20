@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { BASE_URL } from '../constants';
-import { Author } from '../types';
+import { Author, AuthorToUpdate } from '../types';
 
 type SignUpProps = {
   email: string;
@@ -24,6 +24,7 @@ export const getUser = async (token: string): Promise<Author | null> => {
 const useAuth = () => {
   const [user, setUser] = useState<Author | null>(null);
   const loginError = useRef('');
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const token = localStorage.getItem('nmblog_token');
@@ -88,7 +89,32 @@ const useAuth = () => {
     setUser(null);
   };
 
-  return { user, signUp, login, loginError: loginError.current, logout, getUser };
+  const updateProfile = async (post: AuthorToUpdate & { authorId: number; avatarLink: string }) => {
+    if (!user) return;
+
+    const fetchOptions = {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(post)
+    };
+  
+    try {
+      setLoading(true);
+      const response = await fetch(`${BASE_URL}/Author/${user.id}`, fetchOptions);
+      if (response.ok) {
+        window.location.reload();
+        
+      } else {
+        throw new Error('Error updating profile');
+      }
+    } catch (error) {
+      alert('Error updating profile');
+    }
+  };
+
+  return { user, signUp, login, loginError: loginError.current, logout, updateProfile, loading, getUser };
 };
 
 export default useAuth;

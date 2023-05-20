@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
+import { BASE_URL } from '../constants';
 import { Author } from '../types';
-export const BASE_URL = 'https://nightmistressblogapi.azurewebsites.net';
 
 function useAuthor(authorId: string): Author | null {
   const [author, setAuthor] = useState<Author| null>(null);
