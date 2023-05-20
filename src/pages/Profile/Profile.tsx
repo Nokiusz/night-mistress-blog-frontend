@@ -1,49 +1,29 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import defaultAvatar from '@assets/defaultAvatar.svg';
 import { Button, Container, Heading, InputWithImage, InputWithLabel, Wrapper } from './Profile.styles';
-import { useNavigate } from 'react-router-dom';
-import { AuthorToUpdate } from '../../types';
 import { LinkOutlined, MailOutlined } from '@ant-design/icons';
 import { Input, InputRef } from 'antd';
-import { BASE_URL } from '../../constants';
 import { Spinner } from '../../components';
 import useAuth from '../../hooks/useAuth';
 
 const Profile = () => {
-  const { user } = useAuth();
-  const [loading, setLoading] = useState(false);
+  const { user, updateProfile, loading } = useAuth();
 
   const firstNameRef = useRef<InputRef>(null);
   const lastNameRef = useRef<InputRef>(null);
   const emailRef = useRef<InputRef>(null);
   const avatarLinkRef = useRef<InputRef>(null);
 
-  const navigate = useNavigate();
-
-  const updateProfile = async (post: AuthorToUpdate & { authorId: number; avatarLink: string }) => {
-    if (!user) return;
+  if(!user) return;
   
-    const fetchOptions = {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(post)
-    };
-  
-    try {
-      setLoading(true);
-      const response = await fetch(`${BASE_URL}/Author/${user.id}`, fetchOptions);
-      if (response.ok) {
-        navigate('/');
-        window.location.reload();
-        
-      } else {
-        throw new Error('Error updating profile');
-      }
-    } catch (error) {
-      alert('Error updating profile');
-    }
+  const handleUpdateProfile = () => {
+      updateProfile({
+      firstName: firstNameRef.current?.input?.value ?? '',
+      lastName: lastNameRef.current?.input?.value ?? '',
+      email: emailRef.current?.input?.value ?? '',
+      avatarLink: avatarLinkRef.current?.input?.value ?? '',
+      authorId: user.id ?? 0
+    });
   };
 
   return (
@@ -100,15 +80,7 @@ const Profile = () => {
                 />
               </InputWithLabel>
               <Button 
-                onClick={() =>
-                  updateProfile({
-                    firstName: firstNameRef.current?.input?.value ?? '',
-                    lastName: lastNameRef.current?.input?.value ?? '',
-                    email: emailRef.current?.input?.value ?? '',
-                    avatarLink: avatarLinkRef.current?.input?.value ?? '',
-                    authorId: user.id ?? 0
-                  })
-                }
+                onClick={handleUpdateProfile}
                 variant="primary"
               >
                 Update Profile
