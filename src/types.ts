@@ -8,6 +8,7 @@ export interface Author {
 
 export interface AuthorToUpdate {
   email: string,
+  password: string | null,
   firstName: string,
   lastName: string,
   avatarLink: string

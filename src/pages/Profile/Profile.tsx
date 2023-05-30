@@ -20,6 +20,7 @@ const Profile = () => {
       firstName: firstNameRef.current?.input?.value ?? '',
       lastName: lastNameRef.current?.input?.value ?? '',
       email: emailRef.current?.input?.value ?? '',
+      password: null,
       avatarLink: avatarLinkRef.current?.input?.value ?? '',
       authorId: user.id ?? 0
     });
