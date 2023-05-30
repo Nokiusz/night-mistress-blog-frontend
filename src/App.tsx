@@ -1,7 +1,7 @@
 import './App.css';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 
-import { AddPost, Login, PageNotFound, Post, Posts, Profile, Register } from './pages';
+import { AddPost, EditPost, Login, PageNotFound, Post, Posts, Profile, Register } from './pages';
 import { Layout } from './App.styles';
 import { Navbar } from './components';
 import useAuth from './hooks/useAuth';
@@ -18,10 +18,16 @@ function App() {
             element={<Posts />}
           />
           {user && (
-            <Route
-              path="/add/post"
-              element={<AddPost />}
-            />
+            <>
+              <Route
+                path="/add/post"
+                element={<AddPost />}
+              />
+              <Route
+                path="/edit/post/:slug"
+                element={<EditPost />}
+              />
+            </>
           )}
 
           <Route

@@ -136,3 +136,17 @@ export const DeleteButton = styled.div`
     cursor: pointer;
   }
 `;
+
+export const EditLink = styled(Link)`
+  display: flex;
+  justify-content: center !important;
+  align-items: center;
+  width: 20px;
+  height: 20px;
+  background: ${({ theme }: ThemeProps) => theme.colors.red};
+  border-radius: 2px;
+
+  :hover {
+    cursor: pointer;
+  }
+`;

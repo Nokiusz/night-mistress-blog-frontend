@@ -35,4 +35,22 @@ export interface PostToCreate {
   tags: string[]
 }
 
+export interface PostToUpdate {
+  thumbnail: string,
+  description: string,
+  author: {
+    id: number;
+    email: string;
+    firstName: string;
+    lastName: string;
+    avatarLink: string;
+  };
+  friendlyName: string,
+  authorId: number,
+  created: string;
+  title: string,
+  content: string,
+  tags: string[]
+}
+
 export type Posts = Array<Post>
