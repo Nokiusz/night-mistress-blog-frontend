@@ -83,7 +83,7 @@ const AddPost = () => {
             <Input
               id="friendly-name"
               name="friendly-name"
-              placeholder="friendly name"
+              placeholder="Friendly name"
               ref={friendlyNameRef}
             />
           </InputWithLabel>
@@ -92,7 +92,7 @@ const AddPost = () => {
             <Input
               id="thumbnail"
               name="thumbnail"
-              placeholder="thumbnail"
+              placeholder="Thumbnail URL (leave empty for default)"
               ref={thumbnailRef}
               prefix={<LockOutlined />}
             />
@@ -103,7 +103,7 @@ const AddPost = () => {
               type="file"
               id="file"
               name="file"
-              placeholder="file"
+              placeholder="File"
               accept=".md"
               onChange={handleFileInputChange}
             />
@@ -113,7 +113,7 @@ const AddPost = () => {
             <Input
               id="tags"
               name="tags"
-              placeholder="tags, coma separated"
+              placeholder="Tags, coma separated"
               ref={tagsRef}
             />
           </InputWithLabel>
@@ -122,7 +122,7 @@ const AddPost = () => {
             <Input
               id="description"
               name="description"
-              placeholder="description"
+              placeholder="Description"
               ref={descriptionRef}
             />
           </InputWithLabel>

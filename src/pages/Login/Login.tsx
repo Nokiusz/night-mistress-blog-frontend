@@ -36,9 +36,9 @@ const Login = () => {
   return (
     <>
       <Wrapper>
+        {loading && <Spinner />}
         <Container>
           <Heading>Log in</Heading>
-          {loading && <Spinner />}
           <InputWithLabel>
             <label htmlFor="name">Email*</label>
             <Input

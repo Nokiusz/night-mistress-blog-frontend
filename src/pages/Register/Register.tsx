@@ -47,10 +47,10 @@ const Register = () => {
   return (
     <>
       <Wrapper>
+        {loading && <Spinner />}
         <Container>
           {contextHolder}
           <Heading>Sign Up</Heading>
-          {loading && <Spinner />}
           <NameInputs>
             <InputWithLabel>
               <label htmlFor="firstname">Firstname*</label>

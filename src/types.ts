@@ -8,6 +8,7 @@ export interface Author {
 
 export interface AuthorToUpdate {
   email: string,
+  password: string | null,
   firstName: string,
   lastName: string,
   avatarLink: string
@@ -30,6 +31,18 @@ export interface PostToCreate {
   friendlyName: string,
   authorId: number,
   created: string,
+  title: string,
+  content: string,
+  tags: string[]
+}
+
+export interface PostToUpdate {
+  thumbnail: string,
+  description: string,
+  author: Author,
+  friendlyName: string,
+  authorId: number,
+  created: string;
   title: string,
   content: string,
   tags: string[]

@@ -11,6 +11,7 @@ import {
   CreatedSection,
   DeleteButton,
   Description,
+  EditLink,
   LeftSection,
   LeftTopSection,
   PostContainer,
@@ -21,7 +22,7 @@ import {
 } from '../Posts.styles';
 import { Link } from 'react-router-dom';
 
-import { DeleteOutlined } from '@ant-design/icons';
+import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
 import { Modal } from 'antd';
 import { BASE_URL } from '../../../constants';
 
@@ -50,7 +51,6 @@ const PostItem = ({ post }: PostItemProps) => {
   };
 
   return (
-    
     <PostContainer
       tabIndex={0}
       key={postId}
@@ -83,9 +83,16 @@ const PostItem = ({ post }: PostItemProps) => {
             {firstName}&nbsp;
             {lastName}
           </div>
-          {user && <DeleteButton onClick={() => setModalOpen(true)}>
-            <DeleteOutlined />
-          </DeleteButton>}
+          {user && (
+            <>
+              <EditLink to={`/edit/post/${friendlyName}`}>
+                 <EditOutlined />
+              </EditLink>
+              <DeleteButton onClick={() => setModalOpen(true)}>
+                <DeleteOutlined />
+              </DeleteButton>
+            </>
+          )}
         </CreatedSection>
       </LeftSection>
       <RightSection>
