@@ -39,13 +39,7 @@ export interface PostToCreate {
 export interface PostToUpdate {
   thumbnail: string,
   description: string,
-  author: {
-    id: number;
-    email: string;
-    firstName: string;
-    lastName: string;
-    avatarLink: string;
-  };
+  author: Author,
   friendlyName: string,
   authorId: number,
   created: string;
