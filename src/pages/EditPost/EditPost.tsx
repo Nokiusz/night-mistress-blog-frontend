@@ -19,7 +19,7 @@ const EditPost = () => {
   });
 
   const { user } = useAuth();
-  
+
   const titleRef = useRef<InputRef>(null);
   const thumbnailRef = useRef<InputRef>(null);
   const tagsRef = useRef<InputRef>(null);
@@ -51,7 +51,7 @@ const EditPost = () => {
   const { post, updatePost, loading } = usePost(slug);
 
   const handleUpdatePost = () => {
-    if(!post) return;
+    if (!post) return;
 
     updatePost({
       postId: post.postId,
@@ -62,14 +62,14 @@ const EditPost = () => {
         email: post.author.email,
         firstName: post.author.firstName,
         lastName: post.author.lastName,
-        avatarLink: post.author.avatarLink,
+        avatarLink: post.author.avatarLink
       },
       friendlyName: friendlyNameRef.current?.input?.value ?? '',
       authorId: user?.id ?? 0,
       created: post.created,
       title: titleRef.current?.input?.value ?? '',
       content: fileState.file ? fileState.content : post.content,
-      tags: tagsRef.current?.input?.value.split(',') ?? []
+      tags: tagsRef.current?.input?.value.split(',').map((i) => i.trim()) ?? []
     });
   };
 

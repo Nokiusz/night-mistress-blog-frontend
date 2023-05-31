@@ -2,10 +2,16 @@ import React from 'react';
 import { Spinner } from '../../components';
 import usePosts from '../../hooks/usePosts';
 import PostItem from './components/PostItem';
-import { AmmoutOfPosts, Container } from './Posts.styles';
+import { ActiveTag, AmmoutOfPosts, Container, Tag } from './Posts.styles';
+import { useNavigate, useSearchParams } from 'react-router-dom';
+import { ClearTag } from '../Post/Post.styles';
 
 const Posts = () => {
-  const { posts, loading } = usePosts();
+  const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const tagParam = searchParams.get('Tag');
+
+  const { posts, loading } = usePosts(tagParam ? decodeURIComponent(tagParam) : null);
 
   const list = posts.map((post) => (
     <PostItem
@@ -22,6 +28,13 @@ const Posts = () => {
         ) : (
           <>
             <AmmoutOfPosts>Total amount of posts: {posts.length}</AmmoutOfPosts>
+            {tagParam && (
+              <ActiveTag>
+                ActiveTag: &nbsp;
+                <Tag>{tagParam}</Tag>
+                <ClearTag onClick={() => navigate('/')}>clear</ClearTag>
+              </ActiveTag>
+            )}
             {list}
           </>
         )}
