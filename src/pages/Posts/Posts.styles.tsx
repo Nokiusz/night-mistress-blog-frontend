@@ -73,10 +73,13 @@ export const Tag = styled.div`
   padding: 0 8px;
   font-size: 15px;
   font-weight: 400;
+  max-height: 22px;
+  cursor: pointer;
 `;
 
 export const Tags = styled.div`
   display: flex;
+  flex-wrap: wrap;
   flex-direction: row;
   gap: 8px;
 `;
@@ -105,18 +108,35 @@ export const AmmoutOfPosts = styled.div`
   text-align: center;
   color: ${({ theme }: ThemeProps) => theme.colors.red};
 `;
+export const ActiveTag = styled.div`
+  display: flex;
+  gap: 4px;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+  text-align: center;
+  color: ${({ theme }: ThemeProps) => theme.colors.red};
+
+  ${Tag} {
+    color: ${({ theme }: ThemeProps) => theme.colors.white};
+  }
+`;
 
 export const LeftSection = styled.div`
   display: flex;
   flex-direction: column;
   gap: 8px;
   justify-content: space-between;
+  width: 100%;
+  max-width: 664px;
 `;
 
 export const RightSection = styled.div`
   & img {
     border-radius: 4px;
     max-width: 300px;
+
     height: 170px;
   }
 `;

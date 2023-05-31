@@ -39,7 +39,7 @@ const Post = () => {
       <Container>
         <Tags>
           {post.tags.map((tag) => (
-            <Tag key={Date.now()}>{tag}</Tag>
+            <Tag key={tag}>{tag}</Tag>
           ))}
         </Tags>
         <TitleText>{post.title}</TitleText>

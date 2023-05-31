@@ -20,7 +20,7 @@ import {
   Tags,
   TitleLink
 } from '../Posts.styles';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
 import { Modal } from 'antd';
@@ -32,6 +32,7 @@ interface PostItemProps {
 
 const PostItem = ({ post }: PostItemProps) => {
   const { user } = useAuth();
+  const navigate = useNavigate();
   const { postId, tags, title, created, author, friendlyName, thumbnail, description } = post;
   const { firstName, lastName, avatarLink } = author;
 
@@ -46,8 +47,7 @@ const PostItem = ({ post }: PostItemProps) => {
       }
     };
 
-    fetch(`${BASE_URL}/Post/${postId}`, options);
-    window.location.reload();
+    fetch(`${BASE_URL}/Post/${postId}`, options).then(() => window.location.reload());
   };
 
   return (
@@ -59,7 +59,12 @@ const PostItem = ({ post }: PostItemProps) => {
         <LeftTopSection>
           <Tags>
             {tags.map((tag) => (
-              <Tag key={tag}>{tag}</Tag>
+              <Tag
+                onClick={() => navigate(`?Tag=${encodeURIComponent(tag)}`)}
+                key={tag}
+              >
+                {tag}
+              </Tag>
             ))}
           </Tags>
           <TitleLink to={`/post/${friendlyName}`}>{title}</TitleLink>
@@ -86,7 +91,7 @@ const PostItem = ({ post }: PostItemProps) => {
           {user && (
             <>
               <EditLink to={`/edit/post/${friendlyName}`}>
-                 <EditOutlined />
+                <EditOutlined />
               </EditLink>
               <DeleteButton onClick={() => setModalOpen(true)}>
                 <DeleteOutlined />

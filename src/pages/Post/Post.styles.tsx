@@ -58,10 +58,18 @@ export const Tag = styled.div`
   padding: 0 8px;
   font-size: 15px;
   font-weight: 400;
+  max-height: 22px;
+  cursor: pointer;
+`;
+
+export const ClearTag = styled(Tag)`
+  background-color: ${({ theme }: ThemeProps) => theme.colors.white};
+  border: 1px solid ${({ theme }: ThemeProps) => theme.colors.red};
 `;
 
 export const Tags = styled.div`
   display: flex;
+  flex-wrap: wrap;
   flex-direction: row;
   gap: 8px;
 `;
