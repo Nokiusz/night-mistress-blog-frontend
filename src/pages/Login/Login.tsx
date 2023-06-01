@@ -62,7 +62,6 @@ const Login = () => {
             />
           </InputWithLabel>
           <Warning>{loginError || warning}</Warning>
-          {/* TODO: make a react component out of this styled */}
           <Button
             onClick={onLogin}
             variant="primary"
