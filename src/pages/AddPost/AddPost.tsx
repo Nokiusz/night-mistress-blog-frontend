@@ -37,7 +37,7 @@ const AddPost = () => {
 
       reader.onload = (e) => {
         const result = e.target?.result?.toString() ?? '';
-        const content = encodeURIComponent(Buffer.from(result).toString('base64'));
+        const content = Buffer.from(result).toString('base64');
         setFileState({
           file,
           content
@@ -65,14 +65,13 @@ const AddPost = () => {
     try {
       const response = await fetch(`${BASE_URL}/Post`, fetchOptions);
       if (response.ok) {
-        navigate('/');      
+        navigate('/');
       } else {
         throw new Error('Error adding post');
       }
     } catch (error) {
       alert('Error adding post');
     }
-
   };
 
   return (
