@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { Button, Container, Heading, InputWithLabel, Wrapper } from './AddPost.styles';
+import { Button, Container, Heading, InputWithLabel, Warning, Wrapper } from './AddPost.styles';
 import { BASE_URL } from '../../constants';
 import { Input, InputRef } from 'antd';
 import { LockOutlined } from '@ant-design/icons';
@@ -19,6 +19,7 @@ const AddPost = () => {
     content: ''
   });
 
+  const [warning, setWarning] = useState('');
   const { user } = useAuth();
   const titleRef = useRef<InputRef>(null);
   const thumbnailRef = useRef<InputRef>(null);
@@ -49,6 +50,10 @@ const AddPost = () => {
   const addPost = async (post: PostToCreate) => {
     if (!user) return;
 
+    if (!post.friendlyName || !post.title) {
+      return setWarning('Please fill in all required fields');
+    }
+
     const fetchOptions = {
       method: 'POST',
       headers: {
@@ -57,13 +62,17 @@ const AddPost = () => {
       body: JSON.stringify(post)
     };
 
-    fetch(`${BASE_URL}/Post`, fetchOptions).then((response) => {
+    try {
+      const response = await fetch(`${BASE_URL}/Post`, fetchOptions);
       if (response.ok) {
-        navigate('/');
+        navigate('/');      
       } else {
-        alert('Error adding post');
+        throw new Error('Error adding post');
       }
-    });
+    } catch (error) {
+      alert('Error adding post');
+    }
+
   };
 
   return (
@@ -82,7 +91,7 @@ const AddPost = () => {
             />
           </InputWithLabel>
           <InputWithLabel>
-            <label htmlFor="friendly-name">Friendly name</label>
+            <label htmlFor="friendly-name">Friendly name*</label>
             <Input
               id="friendly-name"
               name="friendly-name"
@@ -129,7 +138,7 @@ const AddPost = () => {
               ref={descriptionRef}
             />
           </InputWithLabel>
-          {/* TODO: make a react component out of this styled */}
+          <Warning>{warning}</Warning>
           <Button
             onClick={() =>
               addPost({

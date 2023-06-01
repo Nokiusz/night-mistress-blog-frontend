@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { Button, Container, Heading, InputWithLabel, Wrapper } from './EditPost.styles';
+import { Button, Container, Heading, InputWithLabel, Warning, Wrapper } from './EditPost.styles';
 import { Input, InputRef } from 'antd';
 import { LockOutlined } from '@ant-design/icons';
 import { useParams } from 'react-router-dom';
@@ -19,8 +19,8 @@ const EditPost = () => {
     content: ''
   });
 
+  const [warning, setWarning] = useState('');
   const { user } = useAuth();
-
   const titleRef = useRef<InputRef>(null);
   const thumbnailRef = useRef<InputRef>(null);
   const tagsRef = useRef<InputRef>(null);
@@ -56,24 +56,28 @@ const EditPost = () => {
   const handleUpdatePost = () => {
     if (!post) return;
 
-    updatePost({
-      postId: post.postId,
-      thumbnail: thumbnailRef.current?.input?.value ?? '',
-      description: descriptionRef.current?.input?.value ?? '',
-      author: {
-        id: post.author.id,
-        email: post.author.email,
-        firstName: post.author.firstName,
-        lastName: post.author.lastName,
-        avatarLink: post.author.avatarLink
-      },
-      friendlyName: friendlyNameRef.current?.input?.value ?? '',
-      authorId: user?.id ?? 0,
-      created: post.created,
-      title: titleRef.current?.input?.value ?? '',
-      content: fileState.file ? fileState.content : post.content,
-      tags: tagsRef.current?.input?.value.split(',').map((i) => i.trim()) ?? []
-    });
+    const postId = post.postId;
+    const thumbnail = thumbnailRef.current?.input?.value ?? '';
+    const description = descriptionRef.current?.input?.value ?? '';
+    const author = {
+      id: post.author.id,
+      email: post.author.email,
+      firstName: post.author.firstName,
+      lastName: post.author.lastName,
+      avatarLink: post.author.avatarLink
+    };
+    const friendlyName = friendlyNameRef.current?.input?.value ?? '';
+    const authorId = user?.id ?? 0;
+    const created = post.created;
+    const title = titleRef.current?.input?.value ?? '';
+    const content = fileState.file ? fileState.content : post.content;
+    const tags = tagsRef.current?.input?.value.split(',').map((i) => i.trim()) ?? [];
+
+    if (!friendlyName || !title) {
+      return setWarning('Please fill in all required fields');
+    }
+
+    updatePost({ postId, thumbnail, description, author, friendlyName, authorId, created, title, content, tags });
   };
 
   return (
@@ -145,6 +149,7 @@ const EditPost = () => {
                 ref={descriptionRef}
               />
             </InputWithLabel>
+            <Warning>{warning}</Warning>
             <Button
               onClick={handleUpdatePost}
               variant="primary"

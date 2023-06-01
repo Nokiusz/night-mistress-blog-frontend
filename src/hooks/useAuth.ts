@@ -105,7 +105,6 @@ const useAuth = () => {
       const response = await fetch(`${BASE_URL}/Author/${user.id}`, fetchOptions);
       if (response.ok) {
         window.location.reload();
-        
       } else {
         throw new Error('Error updating profile');
       }
