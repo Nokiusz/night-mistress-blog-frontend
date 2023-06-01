@@ -41,15 +41,16 @@ function usePost(friendlyName: string) {
     };
   
     try {
+      setLoading(true);
       const response = await fetch(`${BASE_URL}/post/${post.postId}`, fetchOptions);
       if (response.ok) {
-        setLoading(true);
         navigate('/');
         window.location.reload();
       } else {
         throw new Error('Error updating post');
       }
     } catch (error) {
+      setLoading(false);
       alert('Error updating post');
     }
   };

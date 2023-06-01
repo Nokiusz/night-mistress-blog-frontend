@@ -144,9 +144,8 @@ const AddPost = () => {
                 friendlyName: friendlyNameRef.current?.input?.value ?? '',
                 authorId: user?.id ?? 0,
                 content: fileState?.content,
-                
                 title: titleRef.current?.input?.value ?? '',
-                tags: tagsRef.current?.input?.value.split(',') ?? [],
+                tags: tagsRef.current?.input?.value.split(',').map((i) => i.trim()) ?? [],
                 created: new Date().toISOString()
               })
             }
