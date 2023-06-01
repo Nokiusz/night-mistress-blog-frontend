@@ -6,6 +6,7 @@ import { LockOutlined } from '@ant-design/icons';
 import useAuth from '../../hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
 import { PostToCreate } from '../../types';
+import { Buffer } from 'buffer';
 
 interface FileState {
   file: File | null;
@@ -35,9 +36,11 @@ const AddPost = () => {
       const reader = new FileReader();
 
       reader.onload = (e) => {
+        const result = e.target?.result?.toString() ?? '';
+        const content = Buffer.from(result).toString('base64');
         setFileState({
           file,
-          content: btoa(e.target?.result?.toString() ?? '')
+          content
         });
       };
       reader.readAsText(file);
@@ -62,14 +65,13 @@ const AddPost = () => {
     try {
       const response = await fetch(`${BASE_URL}/Post`, fetchOptions);
       if (response.ok) {
-        navigate('/');      
+        navigate('/');
       } else {
         throw new Error('Error adding post');
       }
     } catch (error) {
       alert('Error adding post');
     }
-
   };
 
   return (

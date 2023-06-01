@@ -6,6 +6,7 @@ import { useParams } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
 import usePost from '../../hooks/usePost';
 import { Spinner } from '../../components';
+import { Buffer } from 'buffer';
 
 interface FileState {
   file: File | null;
@@ -33,9 +34,11 @@ const EditPost = () => {
       const reader = new FileReader();
 
       reader.onload = (e) => {
+        const result = e.target?.result?.toString() ?? '';
+        const content = Buffer.from(result).toString('base64');
         setFileState({
           file,
-          content: btoa(e.target?.result?.toString() ?? '')
+          content
         });
       };
       reader.readAsText(file);
