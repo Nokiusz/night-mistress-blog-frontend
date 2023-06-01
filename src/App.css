@@ -1,0 +1,20 @@
+.markdown a {
+  color: white;
+  text-decoration: underline;
+}
+
+.markdown a:hover {
+  color: #00bfff;
+  text-decoration: none;
+}
+
+.markdown pre {
+  background-color: #282c34;
+  border: 1px solid #aaa;
+  margin: 4px;
+  color: #fff;
+  padding: 0.2em 0.4em;
+  margin: 0;
+  font-size: 85%;
+  border-radius: 3px;
+}
