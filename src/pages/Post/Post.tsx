@@ -21,6 +21,7 @@ import { Buffer } from 'buffer';
 
 import rehypeRaw from 'rehype-raw';
 import remarkGfm from 'remark-gfm';
+import 'github-markdown-css';
 
 const Post = () => {
   const { slug } = useParams();
@@ -68,12 +69,14 @@ const Post = () => {
           </div>
         </CreatedSection>
         <Description>{post.description}</Description>
-        <ReactMarkdown
-          className="markdown"
-          rehypePlugins={[rehypeRaw, remarkGfm]}
-        >
-          {Buffer.from(post?.content, 'base64').toString()}
-        </ReactMarkdown>
+        <div className="markdown-body">
+          <ReactMarkdown
+            className="markdown"
+            rehypePlugins={[rehypeRaw, remarkGfm]}
+          >
+            {Buffer.from(post?.content, 'base64').toString()}
+          </ReactMarkdown>
+        </div>
       </Container>
     </>
   ) : (
