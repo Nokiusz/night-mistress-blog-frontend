@@ -31,7 +31,7 @@ function usePost(friendlyName: string) {
   }, [friendlyName]);
 
   const updatePost = async (post: PostToUpdate & { postId: number; }) => {
-    if (!post) return;
+    if (!post || !post.friendlyName || !post.title) return;
     const fetchOptions = {
       method: 'PUT',
       headers: {
@@ -41,12 +41,11 @@ function usePost(friendlyName: string) {
     };
   
     try {
-      setLoading(true);
       const response = await fetch(`${BASE_URL}/post/${post.postId}`, fetchOptions);
       if (response.ok) {
+        setLoading(true);
         navigate('/');
         window.location.reload();
-        
       } else {
         throw new Error('Error updating post');
       }
